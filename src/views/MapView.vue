@@ -11,6 +11,7 @@
               </div>
               <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
                   <button
+                      @click="handleConfirmTrip"
                   class="inline-flex justify-center rounded-md border border-transparent bg-black py-2 text-white px-4"
                   >
                       Let's Go!
@@ -26,5 +27,25 @@
 </template>
 
 <script setup>
+import {useRouter} from "vue-router";
+import axios from "axios";
+import http from "@/helpers/http";
+
+const router = useRouter()
+
+const handleConfirmTrip = () => {
+    http().post('/api/trip', {
+        origin: "",
+        destination: "",
+        destination_name: "test dest name"
+    }).then((response) => {
+        router.push({
+            name: 'trip'
+        })
+    })
+        .catch((error) => {
+            console.log(error)
+        })
+}
 
 </script>
