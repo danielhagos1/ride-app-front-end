@@ -50,7 +50,7 @@
 
 <script setup>
 import {vMaska} from "maska"
-import {computed, onMounted, reactive, ref} from "vue";
+import {onMounted, reactive, ref} from "vue";
 import axios from "axios";
 import {useRouter} from "vue-router";
 
@@ -79,27 +79,25 @@ const getformattedCredentials = () => {
 }
 
 const handleLogin = () => {
-    axios.post('http://127.0.0.1:8001/api/login', getformattedCredentials())
+    axios.post('http://127.0.0.1:8000/api/login', getformattedCredentials())
         .then((response) => {
             console.log(response.data)
             waitingOnVerification.value = true
         })
         .catch((error) => {
             console.log(error)
-            alert(error.response.data.message)
         })
 }
 
 const handleVerification = () => {
-    axios.post('http://127.0.0.1:8001/api/login/verify', getformattedCredentials()).then((response) => {
+    axios.post('http://127.0.0.1:8000/api/login/verify', getformattedCredentials()).then((response) => {
         console.log(response.data) //auth token
         localStorage.setItem('token', response.data)
         router.push({
             name: 'landing'
         })
     }).catch((error) => {
-        console.log(error)
-        alert(error.response.data.message);
+        console.log(error);
     })
 }
 </script>

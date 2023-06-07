@@ -3,6 +3,7 @@ import LandingView from "@/views/LandingView.vue";
 import axios from "axios";
 import LoginView from "@/views/LoginView.vue";
 import LocationView from "@/views/LocationView.vue";
+import MapView from "@/views/MapView.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -21,6 +22,11 @@ const router = createRouter({
             path: '/location',
             name: 'location',
             component: LocationView
+        },
+        {
+            path: '/map',
+            name: 'map',
+            component: MapView
         }
 
     ]
@@ -41,7 +47,7 @@ router.beforeEach((to, from) => {
 })
 
 const checkTokenAuthenticity = () => {
-    axios.get('http://127.0.0.1:8001/api/user', {
+    axios.get('http://127.0.0.1:8000/api/user', {
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
         }
