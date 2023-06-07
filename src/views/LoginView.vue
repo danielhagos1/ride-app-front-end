@@ -1,5 +1,5 @@
 <template>
-    <div class="pt-16 justify-center">
+    <div class="pt-16 justify-center overflow-hidden shadow sm:rounded-md max-w-sm mx-auto text-left">
         <h1 class="text-3xl font-semibold mb-4">Enter your phone number</h1>
 
         <form v-if="!waitingOnVerification" action="#" @submit.prevent="handleLogin">
